@@ -22,7 +22,7 @@
       <!-- When clicking "Add Task" a new task with the entered text should be added -->
       <input type="text" v-model="taskBody" />
       <button @click="addTask">Add Task</button>
-      <ul v-for="(task, index) in tasks" key="task">
+      <ul v-for="(task, index) in tasks" :key="task">
         <!-- 2) Output the list of tasks here -->
         <li v-show="isVisible" @click="deleteTask(index)">{{ task }}</li>
       </ul>
