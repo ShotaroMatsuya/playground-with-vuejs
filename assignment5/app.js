@@ -6,6 +6,11 @@ const app = Vue.createApp({
       isVisible: true,
     };
   },
+  computed: {
+    buttonCaption() {
+      return this.isVisible ? 'Hide List' : 'Show List';
+    },
+  },
 
   methods: {
     addTask() {
