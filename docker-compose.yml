@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  front:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - '8080:8080'
+    volumes:
+      - /app/node_modules
+      - ./app:/app
+    # tty: true
+    # stdin_open: true
+    # command: /bin/sh
+
+  npm:
+    image: node:16
+    entrypoint: ['npm']
+    volumes:
+      - ./app:/app
