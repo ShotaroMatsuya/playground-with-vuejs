@@ -9,6 +9,7 @@
       <li><strong>Phone:</strong> {{ phoneNumber }}</li>
       <li><strong>E-Mail:</strong> {{ emailAddress }}</li>
     </ul>
+    <button @click="$emit('delete', id)">Delete</button>
   </li>
 </template>
 <script>
@@ -37,7 +38,7 @@ export default {
       default: false,
     },
   },
-  emits: ['toggle-favorite'],
+  emits: ['toggle-favorite', 'delete'],
   // emits: {
   //   'toggle-favorite': function (id) {
   //     if (id) {
@@ -61,6 +62,9 @@ export default {
       // this.friendIsFavorite = !this.friendIsFavorite;
       this.$emit('toggle-favorite', this.id);
     },
+    // deleteFriend(){
+    //   this.$emit('delete',)
+    // }
   },
 };
 </script>
