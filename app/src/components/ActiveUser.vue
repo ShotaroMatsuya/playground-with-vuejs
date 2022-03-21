@@ -1,8 +1,8 @@
 <template>
-  <li>
-    <h2>username: {{ this.name }}</h2>
-    <h3>age: {{ this.age }}</h3>
-  </li>
+  <section>
+    <h2>{{ name }}</h2>
+    <h3>{{ age }} Years</h3>
+  </section>
 </template>
 
 <script>
@@ -23,3 +23,12 @@ export default {
   methods: {},
 };
 </script>
+
+<style>
+section {
+  margin: 2rem auto;
+  max-width: 40rem;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+}
+</style>
