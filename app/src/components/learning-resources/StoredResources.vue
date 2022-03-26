@@ -6,6 +6,7 @@
       :description="res.description"
       :link="res.link"
       :key="res.id"
+      :id="res.id"
     ></learning-resource>
   </ul>
 </template>
