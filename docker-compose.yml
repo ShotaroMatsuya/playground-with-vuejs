@@ -15,7 +15,8 @@ services:
 
   npm:
     image: node:16-alpine
+    working_dir: /app
     entrypoint: ['npm']
     volumes:
       - ./app:/app
-    working_dir: /app
+      - /app/node_modules
