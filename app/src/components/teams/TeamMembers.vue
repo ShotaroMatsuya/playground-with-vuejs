@@ -49,6 +49,13 @@ export default {
     this.loadTeamMembers(this.teamId);
     console.log(this.$route.query);
   },
+  // cmp内でrouteが更新される前に実行される（watcherの代替として使えるが、route経由での更新に限定されるので、flexibleではない）
+  beforeRouteUpdate() {
+    console.log('TeamMembers Cmp beforeRouteUpdate');
+    console.log(to, from);
+    this.loadTeamMembers(to.params.teamId);
+    next();
+  },
   watch: {
     // $route(newRoute) {
     //   this.loadTeamMembers(newRoute);
