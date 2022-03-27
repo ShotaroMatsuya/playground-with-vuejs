@@ -5,6 +5,7 @@
       <user-item
         v-for="member in members"
         :key="member.id"
+        :id="member.id"
         :name="member.fullName"
         :role="member.role"
       ></user-item>
@@ -22,8 +23,8 @@ export default {
   },
   data() {
     return {
+      teamName: '',
       members: [],
-      temaName: '',
     };
   },
   created() {
@@ -37,7 +38,7 @@ export default {
       selectedMembers.push(selectedUser);
     }
     this.members = selectedMembers;
-    this.temaName = selectedTeam.name;
+    this.teamName = selectedTeam.name;
   },
 };
 </script>
