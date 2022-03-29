@@ -13,5 +13,6 @@ RUN apk update && \
 COPY . .
 
 EXPOSE 8080
+# 初回時のみ
 
 CMD [ "npm","run","serve" ]
