@@ -1,10 +1,13 @@
 <template>
   <div class="container">
+    <users-list></users-list>
+  </div>
+  <div class="container">
     <div class="block" :class="{ animate: animatedBlock }"></div>
     <button @click="animateBlock">Animate</button>
   </div>
   <div class="container">
-    <transition name="para" @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter" @before-leave="beforeLeave" @leave="leave" @after-leave="afterLeave" @enter-cancelled="enterCancelled" @leave-cancelled="leaveCancelled">
+    <transition :css="false" @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter" @before-leave="beforeLeave" @leave="leave" @after-leave="afterLeave" @enter-cancelled="enterCancelled" @leave-cancelled="leaveCancelled">
       <p v-if="paraIsVisible">This is only sometimes visible ...</p>
     </transition>
     <button @click="toggleParagraph">Toggle paragraph</button>
@@ -25,7 +28,11 @@
 </template>
 
 <script>
+import UsersList from './components/UsersList.vue';
 export default {
+  components: {
+    UsersList
+  },
   data() {
     return { animatedBlock: false, dialogIsVisible: false, paraIsVisible: false, usersAreVisible: false,enterInterval: null , leaveInterval: null };
   },
