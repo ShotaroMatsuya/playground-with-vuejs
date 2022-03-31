@@ -1,10 +1,11 @@
 export default {
+  namespaced: true,
   state(){
     return { items: [], total: 0, qty: 0 };
   },
   mutations:{
     addProductToCart(state, payload) {
-      const productData = payload.product;
+      const productData = payload;
       const productInCartIndex = state.items.findIndex(
         (ci) => ci.productId === productData.id
       );
@@ -27,21 +28,24 @@ export default {
 
     removeProductFromCart(state, payload) {
       const prodId = payload.productId;
-      const productInCartIndex = stat_e.items.findIndex(
+      const productInCartIndex = state.items.findIndex(
         (cartItem) => cartItem.productId === prodId
       );
-      const prodData = stat_e.items[productInCartIndex];
-      stat_e.items.splice(productInCartIndex, 1);
-      stat_e.qty -= prodData.qty;
-      stat_e.total -= prodData.price * prodData.qty;
+      const prodData = state.items[productInCartIndex];
+      state.items.splice(productInCartIndex, 1);
+      state.qty -= prodData.qty;
+      state.total -= prodData.price * prodData.qty;
     },
 
   },
   actions: {
     addToCart(context, payload){
-      context.commit('addProductToCart', payload);
+      const prodId = payload.id;
+      const products = context.rootGetters['prods/products'];
+      const product = products.find(prod => prod.id === prodId);
+      context.commit('addProductToCart', product);
     },
-    removeCart(){
+    removeFromCart(context, payload){
       context.commit('removeProductFromCart', payload);
     }
   },
@@ -50,7 +54,7 @@ export default {
       return state.items;
     },
     totalSum(state){
-      return state.total;
+      return state.total.toFixed(2);
     },
     quantity(state){
       return state.qty;
