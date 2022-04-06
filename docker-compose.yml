@@ -4,6 +4,8 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=development
     ports:
       - '8080:8080'
     volumes:

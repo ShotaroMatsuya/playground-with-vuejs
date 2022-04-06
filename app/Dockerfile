@@ -8,9 +8,10 @@ RUN npm install
 
 RUN apk update && \
   npm install -g npm && \
-  npm install -g @vue/cli \
-  npm install --save vue-router@next \
+  npm install -g @vue/cli &&\
+  npm install --save vue-router@next &&\
   npm install --save vuex@next
+
 COPY . .
 
 EXPOSE 8080
