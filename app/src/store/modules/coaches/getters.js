@@ -8,7 +8,7 @@ export default {
   isCoach(_, getters, _2, rootGetters) {
     const coaches = getters.coaches;
     const userId = rootGetters.userId;
-    // テストとしてc3だったらコーチということにしている
+    // テストとしてc3だったら自分ということにしている
     return coaches.some((coach) => coach.id === userId);
   },
   shouldUpdate(state) {
