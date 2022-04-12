@@ -18,7 +18,7 @@
         v-model.trim="lastName.val"
         @blur="clearValidity('lastName')"
       />
-      <p v-if="!firstName.isValid">Lastname must not be empty.</p>
+      <p v-if="!lastName.isValid">Lastname must not be empty.</p>
     </div>
     <div class="form-control" :class="{ invalid: !description.isValid }">
       <label for="description">Description</label>
@@ -48,7 +48,7 @@
           id="frontend"
           value="frontend"
           v-model="areas.val"
-          @blur="clearValidity('area')"
+          @blur="clearValidity('areas')"
         />
         <label for="frontend">Frontend Development</label>
       </div>
@@ -58,7 +58,7 @@
           id="backend"
           value="backend"
           v-model="areas.val"
-          @blur="clearValidity('area')"
+          @blur="clearValidity('areas')"
         />
         <label for="backend">Backend Development</label>
       </div>
@@ -68,7 +68,7 @@
           id="career"
           value="career"
           v-model="areas.val"
-          @blur="clearValidity('area')"
+          @blur="clearValidity('areas')"
         />
         <label for="career">Career Advisory</label>
       </div>
