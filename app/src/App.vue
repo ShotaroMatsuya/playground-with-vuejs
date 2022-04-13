@@ -14,6 +14,19 @@ export default {
   components: {
     TheHeader,
   },
+  computed:{
+    didAutoLogout(){
+      return this.$store.getters.didAutoLogout;
+    }
+  },
+  watch:{
+    didAutoLogout(curValue, oldValue){
+      if(curValue && curValue !== oldValue){
+        // 自動ログアウトしたときのみリダイレクト
+        this.$router.replace('/coaches');
+      }
+    }
+  },
   created() {
     this.$store.dispatch('tryLogin');
   },
