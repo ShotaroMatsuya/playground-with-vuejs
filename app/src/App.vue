@@ -1,64 +1,57 @@
 <template>
-  <section class="container">
-    <h2>{{ userName }}</h2>
-    <h3>{{ age }}</h3>
-    <button @click="setAge">Change Age</button>
-  </section>
+  <h2>My Course Goal</h2>
+  <!-- Task 1: Output your main course goal with help of the composition API -->
+  <!-- Don't hardcode it into the template, instead hardcode it into the JS code -->
+  <!-- <p v-if="isShow">{{myGoal}}</p> -->
+  <!-- <p v-if="obj.isShow">{{obj.myGoal}}</p> -->
+  <p v-if="reactiveObj.isShow">{{reactiveObj.myGoal}}</p>
+  <h3>OUTPUT COURSE GOAL</h3>
+  <!-- Task 2: Toggle (show/ hide) the goal with help of the button  -->
+  <button @click="toggleGoal">Toggle Goal</button>
+  <!-- Task 3: Manage data in three ways -->
+  <!-- => Separate refs -->
+  <!-- => Ref Object -->
+  <!-- => Reactive Object -->
+  <!-- Task 4: Also solve the assignment with the Options API -->
 </template>
 
 <script>
-import {ref} from 'vue';
-
+import { reactive} from 'vue';
 export default {
-
+  
   setup(){
-    const uName = ref('showtarwo');
-    const uAge = ref(18);
-    // const user = reactive({
-    //   name: 'Showtarow',
-    //   age: 18
-    // });
-    function setNewData(){
-      // user.age = 20;
-      uAge.value = 20;
+
+    // const myGoal = ref('I will complete this course.');
+    // const isShow = ref(true);
+    // const obj = ref({
+    //   myGoal : 'I will complete this course.',
+    //   isShow: true
+    // })
+    const reactiveObj = reactive({
+      myGoal : 'I will complete this course.',
+      isShow: true    
+    });
+    function toggleGoal(){
+      // isShow.value = !isShow.value;
+      // obj.value.isShow = !obj.value.isShow;
+      reactiveObj.isShow = !reactiveObj.isShow;
     }
-
-    // reactive obj to refs one 
-    // const userRefs = toRefs(user);
-    // console.log(isReactive(user));
-    // console.log(isRef(userRefs.name));
-
-    // return { user: user, userName: userRefs.name, age: userRefs.age };
-    return {userName: uName, age: uAge, setAge: setNewData};
-  },
-  // methods: {
-  //   setNewAge(){
-  //     this.age = 22;
-  //   }
-  // }
-
-};
+    // return {
+    //   myGoal, isShow, toggleGoal
+    // }
+    // return {obj, toggleGoal}
+    return {reactiveObj, toggleGoal}
+  }
+  
+}
 </script>
 
 <style>
-* {
-  box-sizing: border-box;
-}
-
 html {
   font-family: sans-serif;
 }
-
 body {
-  margin: 0;
-}
-
-.container {
-  margin: 3rem auto;
-  max-width: 30rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  padding: 1rem;
+  margin: 3rem;
   text-align: center;
 }
 </style>
