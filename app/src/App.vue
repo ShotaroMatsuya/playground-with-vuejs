@@ -1,44 +1,50 @@
 <template>
-  <section class="container">
-    <h2>{{ userName }}</h2>
-    <h3>{{ age }}</h3>
-    <button @click="setAge">Change Age</button>
-    <div>
-      <input type="text" placeholder="First Name" v-model="firstName" />
-      <input type="text" placeholder="Last Name" v-model="lastName" />
-    </div>
+  <header>
+    <h1>Expense Tracker</h1>
+  </header>
+  <section>
+    <div>Available Funds: {{ availableFunds }}</div>
+    <div>Total Expenses: {{ currentExpenses }}</div>
+    <hr />
+    <div>Funds left: {{ remainingFunds }}</div>
+  </section>
+  <section>
+    <form @submit.prevent="addExpense">
+      <div>
+        <label for="amount">Amount</label>
+        <input id="amount" type="number" v-model="enteredExpense" />
+      </div>
+      <button>Add Expense</button>
+    </form>
   </section>
 </template>
 
 <script>
-import {ref,computed, watch} from 'vue';
-
 export default {
-
-  setup(){
-    // const uName = ref('showtarwo');
-    const firstName = ref('');
-    const lastName = ref('');
-    const uAge = ref(18);
-
-    const uName = computed(function(){
-      return firstName.value + ' ' + lastName.value;
-    });
-
-    watch([uAge, uName],function(newValues, oldValues){
-      console.log('Old age: '+ oldValues[0]);
-      console.log('New age: '+ newValues[0]);
-      console.log('Old name: '+ oldValues[1]);
-      console.log('New name: '+ newValues[1]);
-    })
-    function setNewData(){
-      uAge.value = 20;
-    }
-
-    return {userName: uName, age: uAge, setAge: setNewData, firstName, lastName};
+  data() {
+    return {
+      availableFunds: 100,
+      currentExpenses: 0,
+      enteredExpense: 0,
+    };
   },
-
-
+  computed: {
+    remainingFunds() {
+      return this.availableFunds - this.currentExpenses;
+    },
+  },
+  methods: {
+    addExpense() {
+      this.currentExpenses += this.enteredExpense;
+    },
+  },
+  watch: {
+    remainingFunds(val) {
+      if (val < 0) {
+        alert('You are broke!');
+      }
+    },
+  },
 };
 </script>
 
@@ -46,21 +52,51 @@ export default {
 * {
   box-sizing: border-box;
 }
-
 html {
   font-family: sans-serif;
 }
-
 body {
   margin: 0;
 }
-
-.container {
-  margin: 3rem auto;
-  max-width: 30rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+header {
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #30006e;
+  color: white;
+}
+section {
+  margin: 2rem auto;
+  max-width: 35rem;
   padding: 1rem;
-  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 12px;
+}
+
+form div {
+  margin: 1rem 0;
+}
+input {
+  width: 100%;
+  padding: 0.15rem;
+}
+label {
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+button {
+  background-color: #30006e;
+  border: 1px solid #30006e;
+  font: inherit;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+  color: white;
+}
+button:hover,
+button:active {
+  background-color: #5819ac;
+  border-color: #5819ac;
 }
 </style>
