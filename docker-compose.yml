@@ -16,9 +16,11 @@ services:
     # command: /bin/sh
 
   npm:
-    image: node:16-alpine
+    build:
+      context: ./app
+      dockerfile: Dockerfile
     working_dir: /app
-    entrypoint: ['npm']
+    entrypoint: ['npm']  # entrypointはcmdを上書きする
     volumes:
       - ./app:/app
       - /app/node_modules
