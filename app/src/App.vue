@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <user-data :user-name="userName" :first-name="firstName" :last-name="lastName" :age="age"></user-data>
+    <user-data :user-name="userName" :first-name="firstName" :last-name="lastName"></user-data>
     <button @click="setAge">Change Age</button>
     <div>
       <input type="text" placeholder="First Name" v-model="firstName" />
@@ -27,7 +27,7 @@ export default {
 
 
     provide('userAge', uAge);
-    
+
     const uName = computed(function(){
       return firstName.value + ' ' + lastName.value;
     });
