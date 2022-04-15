@@ -1,48 +1,46 @@
 <template>
-  <main>
-    <user-list :users="activeUsers" @list-projects="selectUser"></user-list>
-    <projects-list :user="selectedUser"></projects-list>
-  </main>
+  <the-header></the-header>
+  <router-view></router-view>
 </template>
 
 <script>
-import {ref} from 'vue';
+import { ref, provide } from 'vue';
 
-import USER_DATA from './dummy-data.js';
-
-import UserList from './components/users/UserList.vue';
-import ProjectsList from './components/projects/ProjectsList.vue';
-
+import TheHeader from './components/TheHeader.vue';
 
 export default {
   components: {
-    UserList,
-    ProjectsList,
+    TheHeader,
   },
-  setup(){
-    const selectedUser = ref(null);
-    const activeUsers = USER_DATA;
-    function selectUser(uid){
-      selectedUser.value = activeUsers.find((usr)=> usr.id === uid);
-    }
-    return {
-      selectedUser,
-      activeUsers,
-      selectUser
+  setup() {
+    const products = ref([
+      {
+        id: 'p1',
+        title: 'A Carpet',
+        description: 'A nice looking, maybe a little bit used carpet.',
+        price: 15.99,
+      },
+      {
+        id: 'p2',
+        title: 'A Book',
+        description: 'You can read it. Maybe you should read it.',
+        price: 12.99,
+      },
+    ]);
+
+    function addProduct(productData) {
+      const newProduct = {
+        id: new Date().toISOString(),
+        title: productData.title,
+        description: productData.description,
+        price: productData.price,
+      };
+      products.value.push(newProduct);
     }
 
-  }
-  // data() {
-  //   return {
-  //     selectedUser: null,
-  //     activeUsers: USER_DATA,
-  //   };
-  // },
-  // methods: {
-  //   selectUser(uid) {
-  //     this.selectedUser = this.activeUsers.find((usr) => usr.id === uid);
-  //   },
-  // },
+    provide('products', products);
+    provide('addProduct', addProduct);
+  },
 };
 </script>
 
@@ -50,34 +48,21 @@ export default {
 * {
   box-sizing: border-box;
 }
+
 html {
   font-family: sans-serif;
 }
+
 body {
   margin: 0;
 }
 
-main {
-  display: flex;
-  justify-content: space-around;
-}
-
-button {
-  font: inherit;
-  border: 1px solid #00006b;
-  background-color: transparent;
-  color: #00006b;
-  padding: 0.5rem 1.5rem;
-  cursor: pointer;
-  margin: 0.5rem 0.5rem 0.5rem 0;
-}
-button:hover,
-button:active {
-  background-color: #efefff;
-}
-
-button.selected {
-  background-color: #00006b;
-  color: white;
+.container {
+  margin: 3rem auto;
+  max-width: 30rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  padding: 1rem;
+  text-align: center;
 }
 </style>
