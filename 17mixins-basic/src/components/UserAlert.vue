@@ -17,12 +17,10 @@
 export default {
   props: ['title'],
   emits: ['close'],
-  setup(_, context) {
-    function closeDialog() {
-      context.emit('close');
-    }
-
-    return { closeDialog };
+  methods: {
+    closeDialog() {
+      this.$emit('close');
+    },
   },
 };
 </script>
