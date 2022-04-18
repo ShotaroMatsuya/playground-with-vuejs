@@ -17,7 +17,7 @@ export default {
   components: {
     UserAlert,
   },
-  date() {
+  data() {
     return {
       alertTitle: 'Delete User?',
       alertIsVisible: true,
