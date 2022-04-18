@@ -1,6 +1,6 @@
 node_modules
 dist
-.vscode
+# .vscode
 
 .env.production
 .env.development

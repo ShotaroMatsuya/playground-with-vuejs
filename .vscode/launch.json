@@ -1,0 +1,52 @@
+// {
+//   // IntelliSense を使用して利用可能な属性を学べます。
+//   // 既存の属性の説明をホバーして表示します。
+//   // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
+//   "version": "0.2.0",
+//   "configurations": [
+//     {
+//       "type": "firefox",
+//       "request": "launch",
+//       "name": "vuejs: firefox",
+//       "url": "http://localhost:8080",
+//       "webRoot": "${workspaceFolder}/app/src",
+//       "breakOnLoad": true,
+//       "sourceMaps": true,
+//       "sourceMapPathOverrides": {
+//         "webpack:///./src/*": "${webRoot}/*",
+//         "webpack:///src/*": "${webRoot}/*"
+//       }
+//       // "pathMappings": [
+//       //   {
+//       //     "url": "webpack:///src",
+//       //     "path": "${workspaceFolder}/app/src"
+//       //   }
+//       // ]
+//     }
+//   ]
+// }
+
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "vuejs: chrome",
+      "url": "http://localhost:8080",
+      "webRoot": "${workspaceFolder}/app/src",
+      "breakOnLoad": true,
+      "sourceMapPathOverrides": {
+        "webpack:///src/*": "${webRoot}/*"
+      }
+    },
+    {
+      "type": "firefox",
+      "request": "launch",
+      "name": "vuejs: firefox",
+      "url": "http://localhost:8080",
+      "webRoot": "${workspaceFolder}/app/src",
+      "pathMappings": [{ "url": "webpack:///src/", "path": "${webRoot}/" }]
+    }
+  ]
+}
