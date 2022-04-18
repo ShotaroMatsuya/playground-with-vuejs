@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import UserAlert from '../components/UserAlert.vue';
+import UserAlert from './UserAlert.vue';
 
 import alertMixin from '../mixins/alert.js';
 
