@@ -45,14 +45,14 @@ export default {
     );
 
     const hasProjects = computed(function () {
-      return props.user.projects && availableItems.value.length > 0;
+      return user.value.projects && availableItems.value.length > 0;
     });
 
     // const propsWithRefs = toRefs(props);
     // const user = propsWithRefs.user;
 
     watch(user, function () {
-      enteredSearchTerm.value = '';
+      updateSearch('');
     });
     return {
       enteredSearchTerm,
